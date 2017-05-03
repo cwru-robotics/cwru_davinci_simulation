@@ -1,0 +1,163 @@
+Gazebo world frame: z is up; ...
+X-axis points from right portal towards left portal
+Y-axis points towards robot (as viewed looking at robot from front)
+
+Create a "reference" frame from the Polaris data;
+O_ref/Polaris == (O_leftPortal/sensor + O_rightPortal/sensor)/2 
+z_vec_ref_wrt_sensor = [-1; 0; 0] (define z axis pointing antiparallel to Polaris x-axis, i.e. "up" w/rt gravity)
+y_vec_ref_wrt_sensor: average of y_vec_left, y_vec_right; compute vec normal to z_vec; normalize
+
+
+Polaris frame: 
+Polaris was pointed facing robot; Polaris z is INTO camera, i.e. approx parallel to j1 axes;
+CONFIGURATION "YELLOW" (move base joints to align w/ yellow tapes):
+
+world frame has z "up", but x-axis points towards robot's left (and thus y-axis
+points inwards, towards robot)
+
+frame one_psm_base_link is RIGHT arm portal frame, with
+ z "up", x to robot's "right" and y forward (from robot's viewpoint)
+ 
+according to "davinci_calibrator" node:
+
+-----------------
+[ INFO] [1488985824.198919750]: left portal frame w/rt sensor:
+[ INFO] [1488985824.198969194]:  
+[ INFO] [1488985824.199175752]: origin:  0.1005  0.2153 -0.8943
+
+[ INFO] [1488985824.199277288]: 
+ -0.127895  0.0034621  -0.991782
+ -0.943762   0.306986   0.122774
+  0.304888   0.951708 -0.0359945
+[ INFO] [1488985824.199356249]: right portal frame w/rt sensor:
+[ INFO] [1488985824.199420806]: origin:  0.0984 -0.1555 -0.7228
+
+[ INFO] [1488985824.199498367]: 
+ 0.121902  0.013905 -0.992445
+-0.921917   0.37202 -0.108027
+ 0.367707  0.928121 0.0581693
+[ INFO] [1488985824.199624332]: left portal frame w/rt reference frame: 
+[ INFO] [1488985824.199693716]: origin: -0.20427        0 -0.00105
+
+[ INFO] [1488985824.199779150]: 
+  0.984567   0.120888  -0.126543
+ -0.119457    0.99266  0.0188696
+  0.127895 -0.0034621   0.991782
+[ INFO] [1488985824.199869209]: right portal frame w/rt reference frame: 
+[ INFO] [1488985824.199932090]: origin: 0.20427       0 0.00105
+
+[ INFO] [1488985824.200013619]: 
+  0.991112  0.0519601   0.122467
+-0.0532704   0.998552 0.00744731
+ -0.121902  -0.013905   0.992445
+[ INFO] [1488985824.200103080]: defined sensor frame w/rt world: 
+[ INFO] [1488985824.200165108]: origin: -0.366557 -0.721306   0.59945
+
+[ INFO] [1488985824.200242598]: 
+        0  0.907622 -0.419788
+        0 -0.419788 -0.907622
+       -1         0         0
+[ WARN] [1488985824.200319152]: left portal frame w/rt world: 
+[ INFO] [1488985824.200381182]: origin: 0.20427       0 0.49895
+
+[ INFO] [1488985824.200459678]: 
+ -0.984567  -0.120888   0.126543
+  0.119457   -0.99266 -0.0188696
+  0.127895 -0.0034621   0.991782
+[ INFO] [1488985824.200526299]: qx,qy,qz,qw = 0.063857, -0.005605, 0.996119, 0.060320
+[ INFO] [1488985824.200564663]: corresponds to these RPY vals:
+[ INFO] [1488985824.200639283]: equiv RPY = -0.003491, -0.128246, 3.020854
+[ INFO] [1488985824.200676136]:  
+[ WARN] [1488985824.200729838]: right portal frame w/rt world: 
+[ INFO] [1488985824.200793159]: origin: -0.20427       0 0.50105
+
+[ INFO] [1488985824.200872601]: 
+  -0.991112  -0.0519601   -0.122467
+  0.0532704   -0.998552 -0.00744731
+  -0.121902   -0.013905    0.992445
+[ INFO] [1488985824.201004561]: qx,qy,qz,qw = -0.061229, -0.005350, 0.997761, 0.026367
+[ INFO] [1488985824.201053652]: corresponds to these RPY vals:
+[ INFO] [1488985824.201107167]: equiv RPY = -0.014010, 0.122206, 3.087896
+[ INFO] [1488985824.201152369]:  
+[ WARN] [1488985824.201196493]: right portal frame w/rt left portal frame: 
+[ INFO] [1488985824.201323364]: origin:   0.402504  0.0493804 -0.0496149
+
+[ INFO] [1488985824.201434957]: 
+   0.966589  -0.0699038    0.246615
+  0.0673563    0.997553   0.0187615
+  -0.247323 -0.00152352    0.968932
+
+--------------
+
+installed these values in both_psms_sticky.urdf.xacro:
+	<!--xacro:psm_sca prefix="one_" parent_link="camera" xyz="-0.15 0.05 0.5" rpy="0.0 0.0 3.1415926"/-->
+	<!--xacro:psm_sca prefix="two_" parent_link="camera" xyz="0.15 0.05 0.5" rpy="0.0 0.0 3.1415926"/-->
+	<!-- psm one  is right arm -->
+	<!-- origin: -0.20427       0 0.50105 -->
+	<!-- rpy of right arm frame: equiv RPY = -0.014010 0.122206 3.087896-->
+
+	<xacro:psm_sca prefix="one_" parent_link="world" xyz="-0.20427 0 0.50105" rpy="-0.014010 0.122206 3.087896"/>
+	<!-- left arm (psm two): -->
+	<!-- origin:  0.20427       0 0.49895 -->
+	<!-- rpy of right arm frame: equiv RPY = -0.003491, -0.128246, 3.020854-->	
+	<xacro:psm_sca prefix="two_" parent_link="world" xyz=" 0.20427 0 0.49895" rpy="-0.003491 -0.128246 3.020854"/>	
+
+--------------
+START UP GAZEBO: get
+rosrun tf tf_echo world one_psm_base_link
+- Translation: [-0.204, 0.000, 0.501]
+- Rotation: in Quaternion [-0.061, -0.005, 0.998, 0.026]
+            in RPY (radian) [-0.014, 0.122, 3.088]
+
+
+rosrun tf tf_echo world two_psm_base_link
+- Translation: [0.204, 0.000, 0.499]
+- Rotation: in Quaternion [0.064, -0.006, 0.996, 0.060]
+            in RPY (radian) [-0.003, -0.128, 3.021]
+
+rosrun tf tf_echo two_psm_base_link one_psm_base_link
+- Translation: [0.403, 0.049, -0.050]
+- Rotation: in Quaternion [-0.005, 0.125, 0.035, 0.992]
+            in RPY (radian) [-0.002, 0.250, 0.070]
+
+compare to calibrator:
+ WARN] [1488986423.090629577]: right portal frame w/rt left portal frame: 
+[ INFO] [1488986423.090796693]: origin:   0.402504  0.0493804 -0.0496149
+
+[ INFO] [1488986423.090958473]: 
+   0.966589  -0.0699038    0.246615
+  0.0673563    0.997553   0.0187615
+  -0.247323 -0.00152352    0.968932
+[ INFO] [1488986423.091037949]: qx,qy,qz,qw = -0.005114, 0.124531, 0.034606, 0.991599
+[ INFO] [1488986423.091094471]: corresponds to these RPY vals:
+[ INFO] [1488986423.091171896]: equiv RPY = -0.001572, 0.249917, 0.069572
+
+agrees!
+
+modify: 
+
+roslaunch cwru_davinci_gazebo sticky_davinci_gazebo.launch
+to: davinci_yellow_config.launch
+
+get:
+rosrun tf tf_echo two_psm_base_link one_psm_base_link
+- Translation: [0.403, 0.049, -0.050]
+- Rotation: in Quaternion [-0.005, 0.125, 0.035, 0.992]
+            in RPY (radian) [-0.002, 0.250, 0.070]
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+            
+            
+

@@ -1,0 +1,15 @@
+material tissue/Diffuse
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture small_tissue.png
+        filtering anistropic
+        max_anisotropy 16
+      }
+    }
+  }
+}

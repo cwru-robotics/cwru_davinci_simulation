@@ -1,0 +1,331 @@
+<?xml version="1.0"?>
+<sdf version="1.4">
+  <model name="needle_r">
+  
+    <static>false</static>
+    <link name="link">
+ 
+      <pose>-0.012 0 0.001 0 0 0</pose>
+      <inertial>
+        <mass>0.008</mass>
+        <inertia>
+          <ixx>0.0001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.0001</iyy>
+          <iyz>0</iyz>
+          <izz>0.0001</izz>
+        </inertia>
+      </inertial>
+    
+    <collision name="needle_end">
+        <pose>-0.01175 0.002 0.0 0 0 -0.26</pose>
+        <geometry>
+          <box>
+            <size>0.002 0.004 0.002</size>
+          </box>
+        </geometry>
+        <surface>
+            <friction>
+              <ode>
+                <mu>10000.0</mu>
+                <mu2>10000.0</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000.0</kp>
+                <kd>100.0</kd>
+                <max_vel>1.0</max_vel>
+                <min_depth>0.00005</min_depth>
+              </ode>
+            </contact>
+       </surface>
+     </collision>
+     <collision name="needle_1">
+        <pose>-0.0108982 0.00454807 0.0 0 0 -0.52</pose>
+        <geometry>
+          <box>
+            <size>0.002 0.004 0.002</size>
+          </box>
+        </geometry>
+        <surface>
+            <friction>
+              <ode>
+                <mu>10000.0</mu>
+                <mu2>10000.0</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000.0</kp>
+                <kd>100.0</kd>
+                <max_vel>1.0</max_vel>
+                <min_depth>0.00005</min_depth>
+              </ode>
+            </contact>
+       </surface>
+     </collision>
+
+     <collision name="needle_2">
+        <pose>-0.00935409 0.00712284 0.0 0 0 -0.78</pose>
+        <geometry>
+          <box>
+            <size>0.002 0.004 0.002</size>
+          </box>
+        </geometry>
+        <surface>
+            <friction>
+              <ode>
+                <mu>10000.0</mu>
+                <mu2>10000.0</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000.0</kp>
+                <kd>100.0</kd>
+                <max_vel>100.0</max_vel>
+                <min_depth>0.00005</min_depth>
+              </ode>
+            </contact>
+       </surface>
+     </collision>
+
+     <collision name="needle_3">
+        <pose>-0.0071633 0.00938531 0.0 0 0 -1.04</pose>
+        <geometry>
+          <box>
+            <size>0.002 0.004 0.002</size>
+          </box>
+        </geometry>
+        <surface>
+            <friction>
+              <ode>
+                <mu>10000.0</mu>
+                <mu2>10000.0</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000.0</kp>
+                <kd>100.0</kd>
+                <max_vel>1.0</max_vel>
+                <min_depth>0.00005</min_depth>
+              </ode>
+            </contact>
+       </surface>
+     </collision>
+     <collision name="needle_4">
+        <pose>-0.00464107 0.0108292 0.0 0 0 -1.30</pose>
+        <geometry>
+          <box>
+            <size>0.002 0.004 0.002</size>
+          </box>
+        </geometry>
+        <surface>
+            <friction>
+              <ode>
+                <mu>10000.0</mu>
+                <mu2>10000.0</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000.0</kp>
+                <kd>100.0</kd>
+                <max_vel>1.0</max_vel>
+                <min_depth>0.00005</min_depth>
+              </ode>
+            </contact>
+       </surface>
+     </collision>
+
+    <collision name="needle_mid">
+        <pose>0 0.012 0 0 1.57 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.001</radius>
+            <length>0.004</length>
+          </cylinder>
+        </geometry>
+        <surface>
+            <friction>
+              <ode>
+                <mu>1000.0</mu>
+                <mu2>1000.0</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000.0</kp>
+                <kd>100.0</kd>
+                <max_vel>1.0</max_vel>
+                <min_depth>0.00005</min_depth>
+              </ode>
+            </contact>
+       </surface>
+
+      </collision>
+    
+      <collision name="needle_5">
+        <pose>0.0107 0.0044 0 0 0 0.52</pose>
+        <geometry>
+          <box>
+            <size>0.002 0.004 0.002</size>
+          </box>
+        </geometry>
+        <surface>
+            <friction>
+              <ode>
+                <mu>1000.0</mu>
+                <mu2>1000.0</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000.0</kp>
+                <kd>100.0</kd>
+                <max_vel>1.0</max_vel>
+                <min_depth>0.00005</min_depth>
+              </ode>
+            </contact>
+       </surface>
+      </collision>
+
+      <collision name="needle_6">
+        <pose>0.0094 0.0069 0 0 0 0.78</pose>
+        <geometry>
+          <box>
+            <size>0.002 0.004 0.002</size>
+          </box>
+        </geometry>
+        <surface>
+            <friction>
+              <ode>
+                <mu>1000.0</mu>
+                <mu2>1000.0</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000.0</kp>
+                <kd>100.0</kd>
+                <max_vel>1.0</max_vel>
+                <min_depth>0.00005</min_depth>
+              </ode>
+            </contact>
+       </surface>
+      </collision>
+
+     <collision name="needle_7">
+        <pose>0.0071 0.00952534 0 0 0 1.04</pose>
+        <geometry>
+          <box>
+            <size>0.002 0.004 0.002</size>
+          </box>
+        </geometry>
+        <surface>
+            <friction>
+              <ode>
+                <mu>10000.0</mu>
+                <mu2>10000.0</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000.0</kp>
+                <kd>100.0</kd>
+                <max_vel>1.0</max_vel>
+                <min_depth>0.00005</min_depth>
+              </ode>
+            </contact>
+       </surface>
+      </collision>
+      <collision name="needle_8">
+        <pose>0.00437676 0.0108 0 0 0 1.04</pose>
+        <geometry>
+          <box>
+            <size>0.002 0.004 0.002</size>
+          </box>
+        </geometry>
+        <surface>
+            <friction>
+              <ode>
+                <mu>10000.0</mu>
+                <mu2>10000.0</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000.0</kp>
+                <kd>100.0</kd>
+                <max_vel>1.0</max_vel>
+                <min_depth>0.00005</min_depth>
+              </ode>
+            </contact>
+       </surface>
+      </collision>
+
+    <collision name="needle_tip">
+        <pose>0.0117551 0.00163026 0 0 0 0.26</pose>
+        <geometry>
+          <box>
+            <size>0.002 0.004 0.002</size>
+          </box>
+        </geometry>
+        <surface>
+            <friction>
+              <ode>
+                <mu>10000.0</mu>
+                <mu2>10000.0</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000.0</kp>
+                <kd>100.0</kd>
+                <max_vel>1.0</max_vel>
+                <min_depth>0.00005</min_depth>
+              </ode>
+            </contact>
+       </surface>
+      </collision>
+
+   <visual name='visual'>
+        <geometry>
+        <mesh>
+          <uri>model://needle_r/mesh/needle_r4.dae</uri>
+        </mesh>
+      </geometry>
+     </visual>
+ 
+ <collision name='collision'>
+      <geometry>
+        <mesh>
+          <uri>model://needle_r/mesh/needle_r4.dae</uri>
+        </mesh>
+      </geometry>
+      <surface>
+            <friction>
+              <ode>
+                <mu>1000.0</mu>
+                <mu2>1000.0</mu2>
+              </ode>
+            </friction>
+            <contact>
+              <ode>
+                <kp>10000.0</kp>
+                <kd>100.0</kd>
+                <max_vel>1.0</max_vel>
+                <min_depth>0.00005</min_depth>
+              </ode>
+            </contact>
+       </surface>
+   </collision>
+  
+
+    </link>
+  </model>
+</sdf>
+
