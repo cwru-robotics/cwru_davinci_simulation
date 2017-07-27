@@ -181,8 +181,8 @@ int main(int argc, char **argv)
   j2_7_0 = nh.advertise<std_msgs::Float64>("/davinci/two_joint7_position_controller/command", 1, true);
   j2_7_m = nh.advertise<std_msgs::Float64>("/davinci/two_joint7_position_controller_mimic/command", 1, true);
 
-  ros::Subscriber sub1 = nh.subscribe("/dvrk/PSM2/set_position_joint", 10, cb1);
-  ros::Subscriber sub2 = nh.subscribe("/dvrk/PSM1/set_position_joint", 10, cb2);
+  ros::Subscriber sub1 = nh.subscribe("/dvrk/PSM1/set_position_joint", 10, cb1);
+  ros::Subscriber sub2 = nh.subscribe("/dvrk/PSM2/set_position_joint", 10, cb2);
 
   while (ros::ok())
   {

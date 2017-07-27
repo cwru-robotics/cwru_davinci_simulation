@@ -28,6 +28,8 @@ static ros::Publisher joint_publisher_2;
 void cb(const sensor_msgs::JointState::ConstPtr& incoming)
 {
   std::vector<double> pos = incoming->position;
+  std::vector<double> vel = incoming->velocity;
+  std::vector<double> eff = incoming->effort;
 
   sensor_msgs::JointState output_1;
   sensor_msgs::JointState output_2;
@@ -70,6 +72,38 @@ void cb(const sensor_msgs::JointState::ConstPtr& incoming)
   output_2.position.push_back(pos[24]);
   output_2.position.push_back(pos[21]);
 
+  output_1.velocity.push_back(vel[12]);
+  output_1.velocity.push_back(vel[1]);
+  output_1.velocity.push_back(vel[0]);
+  output_1.velocity.push_back(vel[7]);
+  output_1.velocity.push_back(vel[10]);
+  output_1.velocity.push_back(vel[11]);
+  output_1.velocity.push_back(vel[8]);
+
+  output_2.velocity.push_back(vel[25]);
+  output_2.velocity.push_back(vel[14]);
+  output_2.velocity.push_back(vel[13]);
+  output_2.velocity.push_back(vel[20]);
+  output_2.velocity.push_back(vel[23]);
+  output_2.velocity.push_back(vel[24]);
+  output_2.velocity.push_back(vel[21]);
+
+  output_1.effort.push_back(eff[12]);
+  output_1.effort.push_back(eff[1]);
+  output_1.effort.push_back(eff[0]);
+  output_1.effort.push_back(eff[7]);
+  output_1.effort.push_back(eff[10]);
+  output_1.effort.push_back(eff[11]);
+  output_1.effort.push_back(eff[8]);
+
+  output_2.effort.push_back(eff[25]);
+  output_2.effort.push_back(eff[14]);
+  output_2.effort.push_back(eff[13]);
+  output_2.effort.push_back(eff[20]);
+  output_2.effort.push_back(eff[23]);
+  output_2.effort.push_back(eff[24]);
+  output_2.effort.push_back(eff[21]);
+
   joint_publisher_1.publish(output_1);
   joint_publisher_2.publish(output_2);
 }
@@ -79,8 +113,8 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "sim_to_davinci");
   ros::NodeHandle nh;
 
-  joint_publisher_1 = nh.advertise<sensor_msgs::JointState>("/dvrk/PSM2/joint_states", 1, true);
-  joint_publisher_2 = nh.advertise<sensor_msgs::JointState>("/dvrk/PSM1/joint_states", 1, true);
+  joint_publisher_1 = nh.advertise<sensor_msgs::JointState>("/dvrk/PSM1/joint_states", 1, true);
+  joint_publisher_2 = nh.advertise<sensor_msgs::JointState>("/dvrk/PSM2/joint_states", 1, true);
 
   ros::Subscriber state_sub = nh.subscribe("/davinci/joint_states", 10, cb);
 
