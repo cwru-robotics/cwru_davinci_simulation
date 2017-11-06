@@ -8,8 +8,8 @@
     local-name: cwru_msgs
     uri: https://github.com/cwru-robotics/cwru_msgs.git
 - git:
-    local-name: dvrk_model
-    uri: https://github.com/cwru-robotics/dvrk-ros.git
+    local-name: cwru_davinci_cad_models
+    uri: git@github.com:cwru-robotics/cwru_davinci_cad_models.git
 - git:
     local-name: sticky_fingers
     uri: https://github.com/cwru-robotics/cwru_stickyfingers.git

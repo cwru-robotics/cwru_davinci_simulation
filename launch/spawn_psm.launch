@@ -1,0 +1,21 @@
+<launch>
+	<arg name="name" default="PSM1"/>
+	<arg name="xyz" default="0 0 0"/>
+	<arg name="rpy" default="0 0 0"/>
+	
+	<param name="dvrk/$(arg name)/robot_description" command="$(find xacro)/xacro.py '$(find cwru_davinci_geometry_models)/model/$(arg name).urdf.xacro' prefix:=$(arg name)"/>
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model davinci_$(arg name)" ns="dvrk/$(arg name)"/>
+	
+	<!-- Load joint controller configurations from YAML file to parameter server -->
+	<rosparam file="$(find cwru_davinci_simulation)/config/psm_controller_config.yaml" command="load" ns="dvrk/$(arg name)"/>
+	
+	<node
+		name="controller_spawner"
+		pkg="controller_manager"
+		type="spawner"
+		respawn="false"
+		output="screen"
+		ns="dvrk/$(arg name)"
+		args="joint_state_controller joint_traj_controller"
+	/>
+</launch>

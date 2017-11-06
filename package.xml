@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>cwru_davinci_simulation</name>
+  <version>1.0.0</version>
+  <description>The davinci Gazebo simulator.</description>
+  
+  <!-- One maintainer tag required, multiple allowed, one person per tag -->
+  <!-- Example:  -->
+  <maintainer email="wsn@case.edu">Wyatt Newman</maintainer>
+  <maintainer email="tes77@case.edu">Tom Shkurti</maintainer>
+
+  <!-- One license tag required, multiple allowed, one license per tag -->
+  <!-- Commonly used license strings: -->
+  <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
+  <license>GPLv3</license>
+
+
+  <!-- Url tags are optional, but mutiple are allowed, one per tag -->
+  <!-- Optional attribute type can be: website, bugtracker, or repository -->
+  <!-- Example: -->
+  <!-- <url type="website">http://ros.org/wiki/jacobian_publisher</url> -->
+
+
+  <!-- Author tags are optional, mutiple are allowed, one per tag -->
+  <!-- Authors do not have to be maintianers, but could be -->
+  <!-- Example: -->
+  <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
+
+
+  <!-- The *_depend tags are used to specify dependencies -->
+  <!-- Dependencies can be catkin packages or system dependencies -->
+  <!-- Examples: -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>roslint</build_depend>
+  
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>sticky_fingers</exec_depend>
+  <exec_depend>cwru_davinci_geometry_models</exec_depend>
+  
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+  </export>
+</package>
+    

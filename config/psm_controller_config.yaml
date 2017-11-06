@@ -1,0 +1,23 @@
+# Publish all joint states -----------------------------------
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+
+joint_traj_controller:
+    type: "effort_controllers/JointTrajectoryController"
+    joints:
+        - outer_yaw
+        - outer_pitch
+        - outer_insertion
+        - outer_roll
+        - outer_wrist_pitch
+        - outer_wrist_yaw
+        - jaw
+    gains:
+        outer_yaw: {p: 100.0, i: 0.5, d: 10.0}
+        outer_pitch: {p: 50.0, i: 0.1, d: 5.0}
+        outer_insertion: {p: 1000.0, i: 0.1, d: 100.0}
+        outer_roll: {p: 10.0, i: 0.1, d: 5.0} 
+        outer_wrist_pitch: {p: 1.0, i: 0.1, d: 1.0} 
+        outer_wrist_yaw: {p: 10.0, i: 0.1, d: 1.0} 
+        jaw: {p: 10.0, i: 0.1, d: 1.0} 

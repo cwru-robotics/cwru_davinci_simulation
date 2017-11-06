@@ -1,0 +1,7 @@
+<launch>
+	<arg name="xyz" default="0 0 0"/>
+	<arg name="rpy" default="0 0 0"/>
+
+	<param name="davinci_endo/robot_description" command="$(find xacro)/xacro.py '$(find cwru_davinci_geometry_models)/model/camera.urdf.xacro'"/>
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model davinci_camera" ns="davinci_endo"/>
+</launch>
