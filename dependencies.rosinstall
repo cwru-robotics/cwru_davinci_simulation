@@ -9,7 +9,7 @@
     uri: https://github.com/cwru-robotics/cwru_msgs.git
 - git:
     local-name: cwru_davinci_cad_models
-    uri: git@github.com:cwru-robotics/cwru_davinci_cad_models.git
+    uri: git@github.com:cwru-robotics/cwru_davinci_geometry_models.git
 - git:
     local-name: sticky_fingers
     uri: https://github.com/cwru-robotics/cwru_stickyfingers.git
