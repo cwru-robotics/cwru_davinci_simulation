@@ -1,0 +1,26 @@
+<launch>
+	<include file="$(find gazebo_ros)/launch/empty_world.launch" pass_all_args="true">
+		<arg name="world_name" value="$(find cwru_davinci_simulation)/world/empty.world"/>
+	</include>
+	
+	<!--Spawn in the camera.-->
+	<include file="$(find cwru_davinci_simulation)/launch/spawn_camera.launch">
+		<!--arg name="xyz" value="0 0 0"/>
+		<arg name="rpy" value="0 0 0"/-->
+	</include>
+	
+	<!--Spawn PSMs-->
+	<include file="$(find cwru_davinci_simulation)/launch/spawn_psm.launch" pass_all_args="true">
+		<arg name="name" value="PSM1"/>
+		<arg name="xyz" value="-0.10 0.0 0.5"/>
+		<arg name="rpy" value="0.0 0.0 3.1415926"/>
+		<arg name="color" value="Green"/>
+	</include>
+	<!--Spawn PSMs-->
+	<include file="$(find cwru_davinci_simulation)/launch/spawn_psm.launch" pass_all_args="true">
+		<arg name="name" value="PSM2"/>
+		<arg name="xyz" value="0.10 0.0 0.5"/>
+		<arg name="rpy" value="0.0 0.0 3.1415926"/>
+		<arg name="color" value="Yellow"/>
+	</include>
+</launch>

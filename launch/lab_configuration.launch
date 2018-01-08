@@ -10,11 +10,30 @@
 	</include>
 	
 	<!--Spawn PSMs-->
-	<include file="$(find cwru_davinci_simulation)/launch/spawn_psm.launch" pass_all_args="true">
-		<arg name="name" value="PSM1"/>
-	</include>
-	<!--Spawn PSMs-->
-	<include file="$(find cwru_davinci_simulation)/launch/spawn_psm.launch" pass_all_args="true">
-		<arg name="name" value="PSM2"/>
-	</include>
+	<param name="dvrk/PSM1/robot_description" command="$(find xacro)/xacro.py '$(find cwru_davinci_geometry_models)/model/PSM1.urdf.xacro'"/>
+	<param name="dvrk/PSM2/robot_description" command="$(find xacro)/xacro.py '$(find cwru_davinci_geometry_models)/model/PSM2.urdf.xacro'"/>
+	
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model davinci_PSM1" ns="dvrk/PSM1"/>
+	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model davinci_PSM2" ns="dvrk/PSM2"/>
+	
+	<rosparam file="$(find cwru_davinci_simulation)/config/psm_controller_config.yaml" command="load" ns="dvrk/PSM1"/>
+	<rosparam file="$(find cwru_davinci_simulation)/config/psm_controller_config.yaml" command="load" ns="dvrk/PSM2"/>
+	<node
+		name="controller_spawner"
+		pkg="controller_manager"
+		type="spawner"
+		respawn="false"
+		output="screen"
+		ns="dvrk/PSM1"
+		args="joint_state_controller joint_traj_controller"
+	/>
+	<node
+		name="controller_spawner"
+		pkg="controller_manager"
+		type="spawner"
+		respawn="false"
+		output="screen"
+		ns="dvrk/PSM2"
+		args="joint_state_controller joint_traj_controller"
+	/>
 </launch>
