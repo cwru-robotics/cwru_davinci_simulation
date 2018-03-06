@@ -4,16 +4,25 @@
 	<arg name="rpy" default="0 0 0"/>
 	<arg name="color" default="Green"/>
 	
-	<param name="dvrk/$(arg name)/robot_description" command="$(find xacro)/xacro.py '$(find cwru_davinci_geometry_models)/model/PSM_generic.urdf.xacro'
+	<param name="dvrk/$(arg name)/robot_description" command="$(find xacro)/xacro '$(find cwru_davinci_geometry_models)/model/PSM_generic.urdf.xacro'
 		prefix:=$(arg name)
 		xyz:='$(arg xyz)'
 		rpy:='$(arg rpy)'
 		color:=$(arg color)
 	"/>
-	<node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model davinci_$(arg name)" ns="dvrk/$(arg name)"/>
+	<node
+		name="spawn_urdf"
+		pkg="gazebo_ros"
+		type="spawn_model"
+		args="-param robot_description -urdf -model davinci_$(arg name)" ns="dvrk/$(arg name)"
+	/>
 	
 	<!-- Load joint controller configurations from YAML file to parameter server -->
-	<rosparam file="$(find cwru_davinci_simulation)/config/psm_controller_config.yaml" command="load" ns="dvrk/$(arg name)"/>
+	<rosparam
+		file="$(find cwru_davinci_simulation)/config/psm_controller_config.yaml"
+		command="load"
+		ns="dvrk/$(arg name)"
+	/>
 	<node
 		name="controller_spawner"
 		pkg="controller_manager"
@@ -23,4 +32,13 @@
 		ns="dvrk/$(arg name)"
 		args="joint_state_controller joint_traj_controller"
 	/>
+		
+	<node
+		name="robot_state_publisher"
+		pkg="robot_state_publisher"
+		type="robot_state_publisher"
+		ns="dvrk/$(arg name)"
+	/>
+	
+	<!-- Broadcast a static transform for the fiducial. -->
 </launch>

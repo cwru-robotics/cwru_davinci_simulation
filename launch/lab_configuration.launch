@@ -36,4 +36,17 @@
 		ns="dvrk/PSM2"
 		args="joint_state_controller joint_traj_controller"
 	/>
+	
+	<node
+		name="robot_state_publisher"
+		pkg="robot_state_publisher"
+		type="robot_state_publisher"
+		ns="dvrk/PSM1"
+	/>
+	<node
+		name="robot_state_publisher"
+		pkg="robot_state_publisher"
+		type="robot_state_publisher"
+		ns="dvrk/PSM2"
+	/>
 </launch>
